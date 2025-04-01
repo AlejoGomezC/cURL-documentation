@@ -12,9 +12,12 @@ jobs:
       - name: Download Postman Collection from External Repository
         run: |
           curl -o Club.postman_collection.json https://raw.githubusercontent.com/AlejoGomezC/cURL-test/main/collections/Club.postman_collection.json
-      - name: Install Newman
+
+      - name: Install Newman and jq
         run: |
           npm install -g newman newman-reporter-html
+          sudo apt-get update
+          sudo apt-get install -y jq
 
       - name: Run Newman and Generate Docs
         run: |
@@ -28,4 +31,3 @@ jobs:
           git add docs/
           git commit -m 'Generated API documentation from Club Postman collection' || echo "No changes to commit"
           git push
-
