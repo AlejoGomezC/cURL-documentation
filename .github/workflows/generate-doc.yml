@@ -1,0 +1,30 @@
+name: Generate Postman Docs
+
+on: [push]
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+
+      - name: Download Postman Collection from External Repository
+        run: |
+          curl -o Club.postman_collection.json https://raw.githubusercontent.com/AlejoGomezC/cURL-test/main/collections/Club.postman_collection.jso
+      - name: Install Newman and Postman Doc Generator
+        run: |
+          npm install -g newman newman-reporter-html postman-to-html
+
+      - name: Run Newman and Generate Docs
+        run: |
+          chmod +x generate_docs.sh
+          ./generate_docs.sh
+
+      - name: Commit and Push Generated Docs
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add docs/
+          git commit -m 'Generated API documentation from Club Postman collection' || echo "No changes to commit"
+          git push
