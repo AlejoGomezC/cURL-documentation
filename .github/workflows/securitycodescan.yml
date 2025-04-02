@@ -2,12 +2,6 @@ name: SecurityCodeScan
 
 on:
   workflow_dispatch:
-  #push:
-  #  branches: [ "main" ]
-  #pull_request:
-  #  branches: [ "main" ]
-  #schedule:
-  #  - cron: '44 20 * * 5'
 
 jobs:
   SCS:
@@ -15,9 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: 'AlejoGomezC/HPlusSport-API-.NET'
+          repository: 'usuario/otro-repo'  # Reemplaza 'usuario/otro-repo' con el repositorio que deseas clonar
       - uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
       - uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Install .NET Core 3.1
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '3.1.x'
 
       - name: Set up projects for analysis
         uses: security-code-scan/security-code-scan-add-action@f8ff4f2763ed6f229eded80b1f9af82ae7f32a0d
