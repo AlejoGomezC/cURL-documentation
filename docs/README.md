@@ -3,32 +3,39 @@
 - **Crear un Club válido**
   - Method: POST
   - URL: {{baseUrl}}/clubs
-  - Body: {
+  - Body: ```json
+{
     "nombre": "Carmel Club",
     "fechaFundacion": "1960",
     "imagen": "https://carmelclub.com.co/wp-content/uploads/2021/04/20191115_193817-1-800x550.jpg",
     "descripcion": "Centro social ubicado dentro de la ciudad, con más de 60 años de funcionamiento."
 
 }
-  - Response: {
+```
+  - Response: ```json
+{
     "nombre": "Carmel Club",
     "fechaFundacion": "1960",
     "imagen": "https://carmelclub.com.co/wp-content/uploads/2021/04/20191115_193817-1-800x550.jpg",
     "descripcion": "Centro social ubicado dentro de la ciudad, con más de 60 años de funcionamiento.",
     "id": "024cf197-6361-4b58-bc00-02a96230a4c3"
 }
+```
 
 - **Crear un Club inválido**
   - Method: POST
   - URL: {{baseUrl}}/clubs
-  - Body: {
+  - Body: ```json
+{
   "name": "",
   "description": "Descripción sin nombre",
   "address": "123 Calle Falsa",
   "city": "Ciudad de Prueba",
   "image": "http://imagen.com/club.jpg"
 }
-  - Response: {
+```
+  - Response: ```json
+{
     "message": [
         "nombre must be a string",
         "nombre should not be empty",
@@ -41,12 +48,16 @@
     "error": "Bad Request",
     "statusCode": 400
 }
+```
 
 - **Obtener todos los Clubs**
   - Method: GET
   - URL: {{baseUrl}}/clubs
-  - Body: No body
-  - Response: [
+  - Body: ```json
+No body
+```
+  - Response: ```json
+[
     {
         "id": "84b96c59-fa7b-4929-a7bb-7289c6960bd0",
         "nombre": "Carmel Club 1",
@@ -79,12 +90,16 @@
         "socios": []
     }
 ]
+```
 
 - **Obtener un Club por ID**
   - Method: GET
   - URL: {{baseUrl}}/clubs/{{club_id}}
-  - Body: No body
-  - Response: {
+  - Body: ```json
+No body
+```
+  - Response: ```json
+{
     "id": "024cf197-6361-4b58-bc00-02a96230a4c3",
     "nombre": "Carmel Club",
     "fechaFundacion": "1960-01-01T05:00:00.000Z",
@@ -92,61 +107,82 @@
     "descripcion": "Centro social ubicado dentro de la ciudad, con más de 60 años de funcionamiento.",
     "socios": []
 }
+```
 
 - **Obtener un Club por un ID que no existe**
   - Method: GET
   - URL: {{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000
-  - Body: No body
-  - Response: {
+  - Body: ```json
+No body
+```
+  - Response: ```json
+{
     "statusCode": 404,
     "message": "The club with the given id was not found"
 }
+```
 
 - **Actualizar un Club**
   - Method: PUT
   - URL: {{baseUrl}}/clubs/{{club_id}}
-  - Body: {
+  - Body: ```json
+{
   "nombre": "Club Actualizado",
   "fechaFundacion": "1970",
   "imagen": "http://imagen.com/club.jpg",
   "descripcion": "Descripción actualizada"
 
 }
-  - Response: {
+```
+  - Response: ```json
+{
     "id": "024cf197-6361-4b58-bc00-02a96230a4c3",
     "nombre": "Club Actualizado",
     "fechaFundacion": "1970",
     "imagen": "http://imagen.com/club.jpg",
     "descripcion": "Descripción actualizada"
 }
+```
 
 - **Actualizar un Club con un ID que no existe**
   - Method: PUT
   - URL: {{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000
-  - Body: {
+  - Body: ```json
+{
   "nombre": "Club Actualizado",
   "fechaFundacion": "1970",
   "imagen": "http://imagen.com/club.jpg",
   "descripcion": "Descripción actualizada"
 
 }
-  - Response: {
+```
+  - Response: ```json
+{
     "statusCode": 404,
     "message": "The club with the given id was not found"
 }
+```
 
 - **Eliminar un Club por su ID**
   - Method: DELETE
   - URL: {{baseUrl}}/clubs/{{club_id}}
-  - Body: No body
-  - Response: No response
+  - Body: ```json
+No body
+```
+  - Response: ```json
+No response
+```
 
 - **Eliminar un Club con un ID que no existe**
   - Method: DELETE
   - URL: {{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000
-  - Body: No body
-  - Response: {
+  - Body: ```json
+No body
+```
+  - Response: ```json
+{
     "statusCode": 404,
     "message": "The club with the given id was not found"
 }
+```
 
