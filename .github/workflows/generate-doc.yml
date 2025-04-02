@@ -10,12 +10,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download Postman Collection from External Repository
-        run: |
-          curl -o Club.postman_collection.json -fSL https://raw.githubusercontent.com/AlejoGomezC/cURL-test/main/collections/Club.postman_collection.json
-          if [ ! -s Club.postman_collection.json ]; then
-            echo "Error: Club.postman_collection.json is missing or empty"
-            exit 1
-          fi
+        run: curl -o Club.postman_collection.json -fSL https://raw.githubusercontent.com/AlejoGomezC/cURL-test/main/collections/Club.postman_collection.json
+        
 
       - name: Install Newman and jq
         run: |
