@@ -2,6 +2,29 @@ name: SecurityCodeScan
 
 on:
   workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '44 20 * * 5'
+
+jobs:
+  SCS:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+name: SecurityCodeScan
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: '44 20 * * 5'
 
 jobs:
   SCS:
@@ -18,6 +41,12 @@ jobs:
         with:
           dotnet-version: '3.1.x'
 
+      - name: Install Sarif.Multitool
+        run: dotnet tool install --global Sarif.Multitool --version 2.3.10
+
+      - name: Verify Sarif.Multitool Installation
+        run: sarif --version
+
       - name: Set up projects for analysis
         uses: security-code-scan/security-code-scan-add-action@f8ff4f2763ed6f229eded80b1f9af82ae7f32a0d
 
@@ -32,4 +61,31 @@ jobs:
 
       - name: Upload sarif
         uses: github/codeql-action/upload-sarif@v3
+      - uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
+      - uses: microsoft/setup-msbuild@v1.0.2
 
+      - name: Install .NET Core 3.1
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '3.1.x'
+
+      - name: Install Sarif.Multitool
+        run: dotnet tool install --global Sarif.Multitool --version 2.3.10
+
+      - name: Verify Sarif.Multitool Installation
+        run: sarif --version
+
+      - name: Set up projects for analysis
+        uses: security-code-scan/security-code-scan-add-action@f8ff4f2763ed6f229eded80b1f9af82ae7f32a0d
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore
+
+      - name: Convert sarif for uploading to GitHub
+        uses: security-code-scan/security-code-scan-results-action@cdb3d5e639054395e45bf401cba8688fcaf7a687
+
+      - name: Upload sarif
+        uses: github/codeql-action/upload-sarif@v3
