@@ -15,7 +15,7 @@ fi
 echo "JSON file exists and is not empty"
 
 jq -r '.item[] | "- **" + .name + "**\n  - Method: " + .request.method + "\n  - URL: " + .request.url.raw + "\n  - Body: " + (.request.body.raw // "No body") + "\n  - Response: " + (.response[0].body // "No response") + "\n"' Club.postman_collection.json >> docs/README.md
-echo "Parsed JSON and updated README.md
+echo "Parsed JSON and updated README.md"
 
 newman run Club.postman_collection.json -r html --reporter-html-export docs/postman_report.html
 echo "Ran Newman and generated HTML report"
