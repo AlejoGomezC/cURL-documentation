@@ -1,8 +1,8 @@
 # API Documentation
 ## Endpoints
 - **Crear un Club válido**
-  - Method: POST
-  - URL: {{baseUrl}}/clubs
+  - Method: `POST`
+  - URL: `{{baseUrl}}/clubs`
   - Body:
 
 ```json
@@ -27,8 +27,8 @@
 ```
 
 - **Crear un Club inválido**
-  - Method: POST
-  - URL: {{baseUrl}}/clubs
+  - Method: `POST`
+  - URL: `{{baseUrl}}/clubs`
   - Body:
 
 ```json
@@ -59,8 +59,8 @@
 ```
 
 - **Obtener todos los Clubs**
-  - Method: GET
-  - URL: {{baseUrl}}/clubs
+  - Method: `GET`
+  - URL: `{{baseUrl}}/clubs`
   - Body:
 
 ```json
@@ -105,8 +105,8 @@ No body
 ```
 
 - **Obtener un Club por ID**
-  - Method: GET
-  - URL: {{baseUrl}}/clubs/{{club_id}}
+  - Method: `GET`
+  - URL: `{{baseUrl}}/clubs/{{club_id}}`
   - Body:
 
 ```json
@@ -126,8 +126,8 @@ No body
 ```
 
 - **Obtener un Club por un ID que no existe**
-  - Method: GET
-  - URL: {{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000
+  - Method: `GET`
+  - URL: `{{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000`
   - Body:
 
 ```json
@@ -143,8 +143,8 @@ No body
 ```
 
 - **Actualizar un Club**
-  - Method: PUT
-  - URL: {{baseUrl}}/clubs/{{club_id}}
+  - Method: `PUT`
+  - URL: `{{baseUrl}}/clubs/{{club_id}}`
   - Body:
 
 ```json
@@ -169,8 +169,8 @@ No body
 ```
 
 - **Actualizar un Club con un ID que no existe**
-  - Method: PUT
-  - URL: {{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000
+  - Method: `PUT`
+  - URL: `{{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000`
   - Body:
 
 ```json
@@ -192,8 +192,8 @@ No body
 ```
 
 - **Eliminar un Club por su ID**
-  - Method: DELETE
-  - URL: {{baseUrl}}/clubs/{{club_id}}
+  - Method: `DELETE`
+  - URL: `{{baseUrl}}/clubs/{{club_id}}`
   - Body:
 
 ```json
@@ -206,8 +206,8 @@ No response
 ```
 
 - **Eliminar un Club con un ID que no existe**
-  - Method: DELETE
-  - URL: {{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000
+  - Method: `DELETE`
+  - URL: `{{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000`
   - Body:
 
 ```json
