@@ -25,7 +25,6 @@
     "id": "024cf197-6361-4b58-bc00-02a96230a4c3"
 }
 ```
-
 - **Crear un Club inválido**
   - Method: `POST`
   - URL: `{{baseUrl}}/clubs`
@@ -57,14 +56,13 @@
     "statusCode": 400
 }
 ```
-
 - **Obtener todos los Clubs**
   - Method: `GET`
   - URL: `{{baseUrl}}/clubs`
   - Body:
 
 ```json
-No body
+null
 ```
   - Response:
 
@@ -103,14 +101,13 @@ No body
     }
 ]
 ```
-
 - **Obtener un Club por ID**
   - Method: `GET`
   - URL: `{{baseUrl}}/clubs/{{club_id}}`
   - Body:
 
 ```json
-No body
+null
 ```
   - Response:
 
@@ -124,14 +121,13 @@ No body
     "socios": []
 }
 ```
-
 - **Obtener un Club por un ID que no existe**
   - Method: `GET`
   - URL: `{{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000`
   - Body:
 
 ```json
-No body
+null
 ```
   - Response:
 
@@ -141,7 +137,6 @@ No body
     "message": "The club with the given id was not found"
 }
 ```
-
 - **Actualizar un Club**
   - Method: `PUT`
   - URL: `{{baseUrl}}/clubs/{{club_id}}`
@@ -167,7 +162,6 @@ No body
     "descripcion": "Descripción actualizada"
 }
 ```
-
 - **Actualizar un Club con un ID que no existe**
   - Method: `PUT`
   - URL: `{{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000`
@@ -190,28 +184,26 @@ No body
     "message": "The club with the given id was not found"
 }
 ```
-
 - **Eliminar un Club por su ID**
   - Method: `DELETE`
   - URL: `{{baseUrl}}/clubs/{{club_id}}`
   - Body:
 
 ```json
-No body
+null
 ```
   - Response:
 
 ```json
-No response
+null
 ```
-
 - **Eliminar un Club con un ID que no existe**
   - Method: `DELETE`
   - URL: `{{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000`
   - Body:
 
 ```json
-No body
+null
 ```
   - Response:
 
@@ -221,4 +213,3 @@ No body
     "message": "The club with the given id was not found"
 }
 ```
-
