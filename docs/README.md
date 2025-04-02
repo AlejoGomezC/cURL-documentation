@@ -3,7 +3,9 @@
 - **Crear un Club válido**
   - Method: POST
   - URL: {{baseUrl}}/clubs
-  - Body: ```json
+  - Body:
+
+```json
 {
     "nombre": "Carmel Club",
     "fechaFundacion": "1960",
@@ -12,7 +14,9 @@
 
 }
 ```
-  - Response: ```json
+  - Response:
+
+```json
 {
     "nombre": "Carmel Club",
     "fechaFundacion": "1960",
@@ -25,7 +29,9 @@
 - **Crear un Club inválido**
   - Method: POST
   - URL: {{baseUrl}}/clubs
-  - Body: ```json
+  - Body:
+
+```json
 {
   "name": "",
   "description": "Descripción sin nombre",
@@ -34,7 +40,9 @@
   "image": "http://imagen.com/club.jpg"
 }
 ```
-  - Response: ```json
+  - Response:
+
+```json
 {
     "message": [
         "nombre must be a string",
@@ -53,10 +61,14 @@
 - **Obtener todos los Clubs**
   - Method: GET
   - URL: {{baseUrl}}/clubs
-  - Body: ```json
+  - Body:
+
+```json
 No body
 ```
-  - Response: ```json
+  - Response:
+
+```json
 [
     {
         "id": "84b96c59-fa7b-4929-a7bb-7289c6960bd0",
@@ -95,10 +107,14 @@ No body
 - **Obtener un Club por ID**
   - Method: GET
   - URL: {{baseUrl}}/clubs/{{club_id}}
-  - Body: ```json
+  - Body:
+
+```json
 No body
 ```
-  - Response: ```json
+  - Response:
+
+```json
 {
     "id": "024cf197-6361-4b58-bc00-02a96230a4c3",
     "nombre": "Carmel Club",
@@ -112,10 +128,14 @@ No body
 - **Obtener un Club por un ID que no existe**
   - Method: GET
   - URL: {{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000
-  - Body: ```json
+  - Body:
+
+```json
 No body
 ```
-  - Response: ```json
+  - Response:
+
+```json
 {
     "statusCode": 404,
     "message": "The club with the given id was not found"
@@ -125,7 +145,9 @@ No body
 - **Actualizar un Club**
   - Method: PUT
   - URL: {{baseUrl}}/clubs/{{club_id}}
-  - Body: ```json
+  - Body:
+
+```json
 {
   "nombre": "Club Actualizado",
   "fechaFundacion": "1970",
@@ -134,7 +156,9 @@ No body
 
 }
 ```
-  - Response: ```json
+  - Response:
+
+```json
 {
     "id": "024cf197-6361-4b58-bc00-02a96230a4c3",
     "nombre": "Club Actualizado",
@@ -147,7 +171,9 @@ No body
 - **Actualizar un Club con un ID que no existe**
   - Method: PUT
   - URL: {{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000
-  - Body: ```json
+  - Body:
+
+```json
 {
   "nombre": "Club Actualizado",
   "fechaFundacion": "1970",
@@ -156,7 +182,9 @@ No body
 
 }
 ```
-  - Response: ```json
+  - Response:
+
+```json
 {
     "statusCode": 404,
     "message": "The club with the given id was not found"
@@ -166,20 +194,28 @@ No body
 - **Eliminar un Club por su ID**
   - Method: DELETE
   - URL: {{baseUrl}}/clubs/{{club_id}}
-  - Body: ```json
+  - Body:
+
+```json
 No body
 ```
-  - Response: ```json
+  - Response:
+
+```json
 No response
 ```
 
 - **Eliminar un Club con un ID que no existe**
   - Method: DELETE
   - URL: {{baseUrl}}/clubs/00000000-0000-0000-0000-000000000000
-  - Body: ```json
+  - Body:
+
+```json
 No body
 ```
-  - Response: ```json
+  - Response:
+
+```json
 {
     "statusCode": 404,
     "message": "The club with the given id was not found"
