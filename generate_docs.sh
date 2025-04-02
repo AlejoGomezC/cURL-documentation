@@ -5,7 +5,7 @@ echo "Starting script..."
 mkdir -p docs
 echo "Created docs directory"
 echo "# API Documentation" > docs/README.md
-echo "\n## Endpoints" >> docs/README.md
+echo "## Endpoints" >> docs/README.md
 echo "Initialized README.md"
 
 if [ ! -s Club.postman_collection.json ]; then
