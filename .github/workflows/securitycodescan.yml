@@ -2,29 +2,6 @@ name: SecurityCodeScan
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  schedule:
-    - cron: '44 20 * * 5'
-
-jobs:
-  SCS:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-name: SecurityCodeScan
-
-on:
-  workflow_dispatch:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  schedule:
-    - cron: '44 20 * * 5'
 
 jobs:
   SCS:
