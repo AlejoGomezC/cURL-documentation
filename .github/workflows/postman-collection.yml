@@ -26,7 +26,7 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Run API locally
-      run: dotnet run --project ./HPlusSport.API
+      run: dotnet run --project ./HPlusSport.API &
       
     - name: Install Newman
       run: npm install -g newman
