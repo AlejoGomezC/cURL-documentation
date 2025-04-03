@@ -39,6 +39,8 @@ jobs:
 
     - name: Document API responses
       run: |
+        mkdir -p docs
+        touch docs/.Net_README.md
         jq -r '.item[] | "- **" + .name + "**\n  - Method: " + .request.method + "\n  - URL: " + .request.url.raw + "\n  - Body: ```json\n" + (.request.body.raw // "No body") + "\n```\n  - Response: ```json\n" + (.response[0].body // "No response") + "\n```\n"' MyFirst.NetApi.postman_collection.json >> docs/.Net_README.md
         echo "Parsed JSON and updated .NET README.md"
 
