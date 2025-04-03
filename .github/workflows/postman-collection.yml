@@ -1,6 +1,8 @@
-# This workflow will build and deploy a .NET project locally and document the responses
+# This workflow will build and deploy a .NET project locally y documentar las respuestas
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
 name: postman-collection
+
 on:
   workflow_dispatch:
 
@@ -13,24 +15,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout .NET project repository
+      uses: actions/checkout@v4
       with:
         repository: 'AlejoGomezC/HPlusSport-API-.NET'
+        path: 'HPlusSport-API'
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-
     - name: Restore dependencies
       run: dotnet restore
+      working-directory: ./HPlusSport-API
 
     - name: Build
       run: dotnet build --no-restore
+      working-directory: ./HPlusSport-API
 
     - name: Run API locally
-      run: dotnet run --project ./HPlusSport.API &
-      
+      run: dotnet run --project ./HPlusSport-API/HPlusSport.API &
+      working-directory: ./HPlusSport-API
+
     - name: Install Newman
       run: npm install -g newman
 
@@ -38,24 +44,29 @@ jobs:
       run: curl -o MyFirst.NetApi.postman_collection.json -fSL https://raw.githubusercontent.com/AlejoGomezC/cURL-test/main/collections/MyFirst.NetApi.postman_collection.json
     
     - name: Run Postman collection
-      run: newman run MyFirst.NetApi.postman_collection.json
+      run: newman run MyFirst.NetApi.postman_collection.json -r json --reporter-json-export newman-report.json
 
     - name: Checkout documentation repository
       uses: actions/checkout@v4
       with:
         repository: 'AlejoGomezC/cURL-documentation'
+        path: 'cURL-documentation'
+
+    - name: Copy Newman report to documentation repository
+      run: cp newman-report.json cURL-documentation/
 
     - name: Document API responses
       run: |
-        mkdir -p docs
-        touch docs/.Net_README.md
-        jq -r '.item[] | "- **" + .name + "**\n  - Method: " + .request.method + "\n  - URL: " + .request.url.raw + "\n  - Body: ```json\n" + (.request.body.raw // "No body") + "\n```\n  - Response: ```json\n" + (.response[0].body // "No response") + "\n```\n"' MyFirst.NetApi.postman_collection.json >> docs/.Net_README.md
+        mkdir -p cURL-documentation/docs
+        touch cURL-documentation/docs/.Net_README.md
+        jq -r '.item[] | "- **" + .name + "**\n  - Method: " + .request.method + "\n  - URL: " + .request.url.raw + "\n  - Body: ```json\n" + (.request.body.raw // "No body") + "\n```\n  - Response: ```json\n" + (.response[0].body // "No response") + "\n```\n"' cURL-documentation/newman-report.json >> cURL-documentation/docs/.Net_README.md
         echo "Parsed JSON and updated .NET README.md"
     - name: Commit and Push Generated Docs
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add .
+        cd cURL-documentation
+        git add docs/
         git commit -m 'Generated API documentation from .NET Postman collection' || echo "No changes to commit"
         git push
 
