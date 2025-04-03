@@ -48,7 +48,7 @@ jobs:
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add docs/
+        git add .
         git commit -m 'Generated API documentation from .NET Postman collection' || echo "No changes to commit"
         git push
 
