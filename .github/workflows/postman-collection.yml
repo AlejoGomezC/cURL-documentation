@@ -1,8 +1,6 @@
-# This workflow will build and deploy a .NET project locally y documentar las respuestas
+# This workflow will build and deploy a .NET project locally and document the responses
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: postman-collection
-
 on:
   workflow_dispatch:
 
@@ -17,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        repository: 'AlejoGomezC/cURL-documentation'
+        repository: 'AlejoGomezC/HPlusSport-API-.NET'
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -32,7 +30,7 @@ jobs:
 
     - name: Run API locally
       run: dotnet run --project ./HPlusSport.API &
-
+      
     - name: Install Newman
       run: npm install -g newman
 
@@ -41,6 +39,11 @@ jobs:
     
     - name: Run Postman collection
       run: newman run MyFirst.NetApi.postman_collection.json
+
+    - name: Checkout documentation repository
+      uses: actions/checkout@v4
+      with:
+        repository: 'AlejoGomezC/cURL-documentation'
 
     - name: Document API responses
       run: |
@@ -52,7 +55,7 @@ jobs:
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        git add docs/
+        git add .
         git commit -m 'Generated API documentation from .NET Postman collection' || echo "No changes to commit"
         git push
 
