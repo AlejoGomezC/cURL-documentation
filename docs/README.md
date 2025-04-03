@@ -1,5 +1,5 @@
 # API Documentation
-## Endpoints
+## API Endpoints
 - **Crear un Club válido**
   - Method: `POST`
   - URL: `{{baseUrl}}/clubs`
