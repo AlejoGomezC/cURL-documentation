@@ -15,12 +15,10 @@ jobs:
       - name: Download Postman Collection from External Repository
         run: curl -o Club.postman_collection.json -fSL https://raw.githubusercontent.com/AlejoGomezC/cURL-test/main/collections/Club.postman_collection.json
         
-
-      - name: Install Newman and jq
+      - name: Install jq
         run: |
           sudo apt-get update
           sudo apt-get install -y jq
-
 
       - name: Run Newman and Generate Docs
         run: |
